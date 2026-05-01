@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYATIMIZ OYUN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sol Taraf -->
+        <div class="sidebar">
+            <h2 class="menu-title">Oynanan Seriler</h2>
+            <div id="videoMenu"></div>
+        </div>
+
+        <!-- Sağ Taraf -->
+        <div class="main-content">
+            <div class="video-box">
+                <iframe id="mainVid" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h1 id="currentTitle">Seri Seçiniz</h1>
+        </div>
+    </div>
+
+    <script>
+        const txtFile = "videolar.txt";
+        let videoList = [];
+
+        async function yukle() {
+            try {
+                const response = await fetch(txtFile);
+                const text = await response.text();
+                const satirlar = text.split('\n').map(s => s.trim()).filter(s => s !== "");
+
+                let temp = [];
+                for (let i = 0; i < satirlar.length; i += 2) {
+                    if (satirlar[i] && satirlar[i+1]) {
+                        temp.push({ baslik: satirlar[i], link: satirlar[i+1] });
+                    }
+                }
+
+                // Alfabetik sıralama
+                temp.sort((a, b) => a.baslik.localeCompare(b.baslik, 'tr'));
+                videoList = temp;
+                menuOlustur();
+                if (videoList.length > 0) oynat(0);
+            } catch (hata) { console.error("Hata:", hata); }
+        }
+
+        function menuOlustur() {
+            const menu = document.getElementById('videoMenu');
+            menu.innerHTML = "";
+            let sonHarf = "";
+
+            videoList.forEach((oyun, index) => {
+                const ilkHarf = oyun.baslik.charAt(0).toUpperCase();
+
+                if (ilkHarf !== sonHarf) {
+                    sonHarf = ilkHarf;
+                    const harfBolumu = document.createElement('div');
+                    harfBolumu.className = "harf-etiketi";
+                    harfBolumu.innerText = sonHarf;
+                    menu.appendChild(harfBolumu);
+                }
+
+                const link = document.createElement('a');
+                link.className = "oyun-link";
+                link.innerText = oyun.baslik;
+                link.onclick = () => oynat(index);
+                menu.appendChild(link);
+            });
+        }
+
+        function oynat(i) {
+            let url = videoList[i].link;
+            let embed = "";
+            if (url.includes('list=')) {
+                embed = "https://www.youtube.com/embed?listType=playlist&list=" + url.split('list=')[1].split('&')[0];
+            } else {
+                embed = "https://www.youtube.com/embed/" + url.split('v=')[1].split('&')[0];
+            }
+            document.getElementById('mainVid').src = embed;
+            document.getElementById('currentTitle').innerText = videoList[i].baslik;
+
+            const tumLinkler = document.querySelectorAll('.oyun-link');
+            tumLinkler.forEach((l, idx) => {
+                l.classList.remove('aktif');
+                if (l.innerText === videoList[i].baslik) l.classList.add('aktif');
+            });
+        }
+
+        yukle();
+    </script>
+</body>
+</html>
