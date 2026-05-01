@@ -5,11 +5,10 @@
     <title>Hayatımız Oyun | Youtube Oyun Arşivi</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* GENEL AYARLAR */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #050505; color: #fff; font-family: 'Roboto Condensed', sans-serif; display: flex; min-height: 100vh; }
 
-        /* SOL MENÜ (SIDEBAR) */
+        /* SOL MENÜ */
         .sidebar {
             width: 260px; background: #0a0a0a; border-right: 2px solid #ff0000;
             padding: 25px; position: fixed; height: 100%; overflow-y: auto; z-index: 100;
@@ -26,11 +25,10 @@
         }
         .menu-item:hover, .menu-item.active { background: #ff0000; color: #fff; }
 
-        /* ANA İÇERİK ALANI */
+        /* ANA İÇERİK */
         .main-content { margin-left: 260px; flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         .wrapper { width: 100%; max-width: 1000px; }
 
-        /* HEADER & LOGO */
         .header-area { text-align: center; margin-bottom: 20px; width: 100%; }
         .big-logo { width: 180px; height: auto; margin-bottom: 20px; }
         .search-box { 
@@ -40,15 +38,27 @@
             text-align: center; font-weight: bold;
         }
 
-        /* ANA KATEGORİ ŞERİDİ (TAMAMLANANLAR, YAKINDA VB.) */
+        /* DISCORD KUTUSU (BAŞLIĞIN ÜSTÜNDE) */
+        .discord-box {
+            background: #5865F2; color: white; padding: 15px 20px; border-radius: 12px; 
+            text-align: center; margin-bottom: 15px; font-weight: bold; 
+            border: 2px dashed #fff; width: 100%;
+        }
+        .discord-btn {
+            display: inline-block; background: white; color: #5865F2; 
+            padding: 6px 20px; border-radius: 6px; text-decoration: none; 
+            font-weight: 900; margin-top: 8px; font-size: 0.85rem;
+        }
+
+        /* ANA KATEGORİ ŞERİDİ */
         .main-category-divider {
             background: #fff; color: #000; padding: 15px; font-weight: 900; 
-            font-size: 1.8rem; border-radius: 10px; margin: 10px 0 20px 0; 
+            font-size: 1.8rem; border-radius: 10px; margin-bottom: 20px; 
             text-transform: uppercase; font-family: 'Oswald', sans-serif; text-align: center;
             width: 100%; border-bottom: 5px solid #ff0000;
         }
 
-        /* HARF ŞERİTLERİ (A SERİSİ, B SERİSİ...) */
+        /* HARF ŞERİTLERİ */
         .letter-divider { 
             background: #ff0000; color: #fff; padding: 10px; font-weight: bold; 
             font-size: 1.4rem; border-radius: 8px; margin: 30px 0 12px 0; 
@@ -56,44 +66,25 @@
             width: 100%;
         }
 
-        /* OYUN SATIRLARI */
         .game-row { 
             background: #0d0d0d; border: 1px solid #1a1a1a; padding: 12px 20px; 
             margin-bottom: 8px; display: flex; align-items: center; border-radius: 10px; width: 100%;
         }
         .game-title { font-weight: bold; font-size: 1.1rem; color: #fff; flex: 1; }
 
-        /* ETİKETLER */
         .badge { padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; margin-right: 8px; text-transform: uppercase; }
 
-        /* BUTON TASARIMLARI */
         .izle-btn { 
-            text-decoration: none; color: #fff; background: #111; 
-            border: 1px solid #333; padding: 8px 18px; border-radius: 8px; 
-            font-weight: bold; display: flex; align-items: center; font-size: 0.9rem;
-            margin-left: 20px; transition: 0.3s;
+            text-decoration: none; color: #fff; background: #111; border: 1px solid #333; 
+            padding: 8px 18px; border-radius: 8px; font-weight: bold; display: flex; 
+            align-items: center; font-size: 0.9rem; margin-left: 20px;
         }
         .izle-btn:hover:not(.disabled) { background: #ff0000; border-color: #fff; }
         .disabled { opacity: 0.3; cursor: not-allowed; }
         .play-icon { color: #ff0000; margin-right: 8px; }
 
-        /* DISCORD KUTUSU */
-        .discord-box {
-            background: #5865F2; color: white; padding: 20px; border-radius: 12px; 
-            text-align: center; margin-bottom: 25px; font-weight: bold; 
-            border: 2px dashed #fff; width: 100%;
-        }
-        .discord-btn {
-            display: inline-block; background: white; color: #5865F2; 
-            padding: 10px 25px; border-radius: 8px; text-decoration: none; 
-            font-weight: 900; margin-top: 10px; transition: 0.2s;
-        }
-        .discord-btn:hover { transform: scale(1.05); }
-
-        /* NAVİGASYON (HARF BUTONLARI) */
         .nav-container { background: #0d0d0d; border: 1px solid #1a1a1a; padding: 15px; border-radius: 12px; margin-bottom: 25px; text-align: center; width: 100%; }
         .letter-btn { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 8px 12px; margin: 3px; border-radius: 6px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
-        .letter-btn:hover { background: #ff0000; }
     </style>
 </head>
 <body>
@@ -114,7 +105,6 @@
     <div class="main-content">
         <div class="wrapper">
             <div class="header-area">
-                <!-- img/logo.png dosyanın doğru yerde olduğundan emin ol -->
                 <img src="img/logo.png" alt="Logo" class="big-logo">
                 <input type="text" id="searchInput" class="search-box" placeholder="OYUN ARA..." onkeyup="searchFn()">
             </div>
@@ -123,7 +113,9 @@
                 <div id="letterBox"></div>
             </div>
 
-            <div id="mainTitleArea"></div>
+            <!-- DISCORD VE BAŞLIK ALANI -->
+            <div id="mainHeaderArea"></div>
+            
             <div id="gameGrid"></div>
         </div>
     </div>
@@ -152,10 +144,8 @@
             }).filter(g => g.name !== "");
             
             allGames.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
-            
-            // Başlangıç ayarı
             changeCategory('oynanan', document.querySelector('.menu-item'), 'TAMAMLANANLAR');
-        } catch (e) { console.error("Veri dosyası hatası!"); }
+        } catch (e) { console.error("Hata!"); }
     }
 
     function renderList(data, useDividers = false) {
@@ -165,7 +155,6 @@
 
         data.forEach(game => {
             const firstLetter = game.name.charAt(0).toUpperCase();
-            
             if (useDividers && firstLetter !== lastLetter) {
                 lastLetter = firstLetter;
                 grid.innerHTML += `<div id="section-${lastLetter}" class="letter-divider">${lastLetter} SERİSİ</div>`;
@@ -185,12 +174,7 @@
                 ? `<span class="izle-btn disabled">YAKINDA</span>`
                 : `<a href="${game.url}" target="_blank" class="izle-btn"><span class="play-icon">▶</span> İZLE</a>`;
 
-            grid.innerHTML += `
-                <div class="game-row">
-                    <span class="game-title">${game.name}</span>
-                    <div style="display:flex; align-items:center;">${tagHtml}</div>
-                    ${buttonHtml}
-                </div>`;
+            grid.innerHTML += `<div class="game-row"><span class="game-title">${game.name}</span><div style="display:flex; align-items:center;">${tagHtml}</div>${buttonHtml}</div>`;
         });
     }
 
@@ -198,47 +182,35 @@
         document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
         element.classList.add('active');
         
-        const titleArea = document.getElementById('mainTitleArea');
-        const nav = document.getElementById('letterNav');
-        
-        // Ana Başlığı oluştur
-        let headerContent = `<div class="main-category-divider">${title}</div>`;
-        
-        // Discord Kutusu Kontrolü
+        const headerArea = document.getElementById('mainHeaderArea');
+        let content = "";
+
+        // Discord kutusunu BAŞLIĞIN ÜSTÜNE koyuyoruz
         if (cat === 'istek') {
-            headerContent += `
+            content += `
                 <div class="discord-box">
-                    <p style="font-size: 1.2rem;">🎮 Oyun isteklerinizi iletmek için Discord kanalımıza gelebilirsiniz!</p>
+                    <p style="font-size: 1.1rem;">🎮 Oyun istekleriniz için Discord kanalımıza gelebilirsiniz!</p>
                     <a href="https://discord.gg/QXc74Q6UUE" target="_blank" class="discord-btn">DISCORD'A KATIL</a>
                 </div>`;
         }
-        
-        titleArea.innerHTML = headerContent;
+
+        // Ana başlık şeridi hemen altında
+        content += `<div class="main-category-divider">${title}</div>`;
+        headerArea.innerHTML = content;
 
         const filtered = allGames.filter(g => g.type === cat);
-
-        if (cat === 'oynanan') {
-            nav.style.display = 'block';
-            renderList(filtered, true);
-        } else {
-            nav.style.display = 'none';
-            renderList(filtered, false);
-        }
+        document.getElementById('letterNav').style.display = (cat === 'oynanan') ? 'block' : 'none';
+        renderList(filtered, cat === 'oynanan');
     }
 
     function searchFn() {
         const v = document.getElementById('searchInput').value.toLowerCase();
-        const nav = document.getElementById('letterNav');
-        const titleArea = document.getElementById('mainTitleArea');
-
         if (v.length > 0) {
-            nav.style.display = 'none';
-            titleArea.innerHTML = `<div class="main-category-divider">ARAMA SONUÇLARI</div>`;
-            const filtered = allGames.filter(x => x.name.toLowerCase().includes(v));
-            renderList(filtered, true);
+            document.getElementById('letterNav').style.display = 'none';
+            document.getElementById('mainHeaderArea').innerHTML = `<div class="main-category-divider">ARAMA SONUÇLARI</div>`;
+            renderList(allGames.filter(x => x.name.toLowerCase().includes(v)), true);
         } else {
-            const activeItem = document.querySelector('.menu-item.active');
-            activeItem.click(); // Mevcut kategoriye geri dön
+            document.querySelector('.menu-item.active').click();
         }
     }
 
